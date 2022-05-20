@@ -1,0 +1,49 @@
+<%- include('layouts/header'); -%>
+
+<%- include('layouts/navbar'); -%>
+
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="site-heading">
+          <h1>Clean Blog</h1>
+          <span class="subheading">A Blog Theme by Start Bootstrap</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+  <div class="row gx-4 gx-lg-5 justify-content-center">
+    <form action="/post/search" method="POST" class="d-flex">
+      <input class="form-control me-2" name="searchTitle" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
+    <div class="col-md-10 col-lg-8 col-xl-7">
+      <!-- Post preview-->
+      <% for (var i = blogposts.length - 1; i >= 0; i-- ) { %>
+      <div class="post-preview">
+        <a href="/post/<%= blogposts[i]._id %>">
+          <h2 class="post-title"><%= blogposts[i].title%></h2>
+          <h3 class="post-subtitle"><%=blogposts[i].body.substring(0, 200) + "..."%></h3>
+        </a>
+        <p class="post-meta">
+          Posted by
+          <a href="#!"><%= blogposts[i].username %></a>
+          on <%= blogposts[i].datePosted.toDateString() %>
+        </p>
+      </div>
+      <!-- Divider-->
+      <hr class="my-4" />
+      <% } %>
+      <!-- Pager-->
+      <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="/">Go Back</a></div>
+    </div>
+  </div>
+</div>
+
+<%- include('layouts/footer'); -%>
