@@ -36,7 +36,7 @@
         </a>
         <p class="post-meta">
           Posted by
-          <a href="#!"><%= blogposts[i].username %></a>
+          <a href="#!"><%= blogposts[i].userid.username %></a>
           on <%= blogposts[i].datePosted.toDateString() %>
         </p>
       </div>
@@ -83,7 +83,7 @@
         </a>
         <p class="post-meta">
           Posted by
-          <a href="#!">${post.username}</a>
+          <a href="#!">${post.userid.username}</a>
           on ${post.datePosted}
         </p>
       </div>
