@@ -23,7 +23,7 @@
 
 
 ## Technologies Used
-* Node- version 1.0
+* Node- version 16.13.0
 * Express - version 4.18.1
 * Mongodb - version 4.6.0
 * Bootstrap - version 5
