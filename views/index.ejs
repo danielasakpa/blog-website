@@ -19,13 +19,16 @@
 <div class="container px-4 px-lg-5">
   <div class="row gx-4 gx-lg-5 justify-content-center">
     <form action="/post/search" method="POST" class="d-flex">
-      <input class="form-control me-2" name="searchTitle" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
+      <input class="form-control me-2" name="searchTitle" onkeyup="sendData(this)" type="search" placeholder="Search" aria-label="Search">
     </form>
 
     <div class="col-md-10 col-lg-8 col-xl-7">
+    <div id="searched">
+      
+    </div>
       <!-- Post preview-->
-      <% for (var i = blogposts.length - 1; i >= 0; i-- ) { %>
+    <div  id="main-post"">
+   <% for (var i = blogposts.length - 1; i >= 0; i-- ) { %>
       <div class="post-preview">
         <a href="/post/<%= blogposts[i]._id %>">
           <h2 class="post-title"><%= blogposts[i].title %></h2>
@@ -37,13 +40,63 @@
           on <%= blogposts[i].datePosted.toDateString() %>
         </p>
       </div>
-      <!-- Divider-->
       <hr class="my-4" />
-      <% } %>
+      <% } %> 
+      </div>
       <!-- Pager-->
       <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
     </div>
   </div>
 </div>
+
+  <script>
+    const sendData = (e) => {
+      const searched = document.getElementById("searched")
+      let match = e.value.match(/^[a-zA-Z ]*/);
+      let match2 = e.value.match(/\s*/);
+      
+    if (match2[0] === e.value) {
+      searched.innerHTML = ""
+      return
+     }
+
+   if (match[0] === e.value) {
+       fetch("post/search", {
+          method: 'POST',
+          headers: {"content-type": "application/json", 'Accept': 'application/json'},
+          body: JSON.stringify({payload: e.value})
+       }).then(res => res.json()).then(data => {
+        let payload = data.payload
+         console.log(payload)
+
+     if (payload.length < 1) {
+       searched.innerHTML = `<p>Sorry,Nothing Found<p>`
+       return;
+     }
+         
+     if(e.value.length > 0) {
+        payload.forEach( post => {
+        searched.innerHTML += `<div class="post-preview">
+        <a href="/post/${post._id}">
+          <h2 class="post-title">${post.title}</h2>
+          <h3 class="post-subtitle">${post.body.substring(0, 200) + "..."}</h3>
+        </a>
+        <p class="post-meta">
+          Posted by
+          <a href="#!">${post.username}</a>
+          on ${post.datePosted}
+        </p>
+      </div>
+      <hr class="my-4" />`
+       })  
+       document.getElementById("main-post").style.display = 'none';
+      } else {
+      document.getElementById("main-post").style.display = 'block';
+      }
+      })
+    }
+     searched.innerHTML = ""
+   }
+  </script>
 
 <%- include('layouts/footer'); -%>

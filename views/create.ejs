@@ -22,14 +22,19 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <p>Want to get in touch? Fill out the form below to send me a body and I will get back to you as soon as possible!</p>
                         <div class="my-5">
+                           <ul class="list-group"></ul>
+  <% if(Post.length > 0){ %>
+        <li class="list-group-item list-group-item-danger"><%= Post %></li>
+    <% } %>
+    </ul>
                             <!-- * * * * * * * * * * * * * * *-->
                             <form action="/posts/store" method="POST" id="contactForm" enctype="multipart/form-data">
                                 <div class="form-floating">
-                                    <input class="form-control" id="title" type="text" name="title" placeholder="Enter your Title..."/>
+                                    <input class="form-control" id="title" value="<%= Title %>" type="text" name="title" placeholder="Enter your Title..."/>
                                     <label for="title">Title</label>
                                 </div>
-                                <div class="form-floating">
-                                    <textarea class="form-control" name="body" id="body" placeholder="Enter your Description here..." style="height: 12rem"></textarea>
+                                <div class="form-floating">   
+                                    <textarea class="form-control" value="<%= Body %>" name="body" id="body" placeholder="Enter your Description here..." style="height: 12rem"></textarea>
                                     <label for="body">Description</label>
                                 </div>
 

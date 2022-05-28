@@ -1,0 +1,61 @@
+      <%- include('layouts/header'); -%>
+
+      <%- include('layouts/navbar'); -%>
+
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('/assets/img/contact-bg.jpg')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="page-heading">
+                            <h1>Login</h1>
+                            <span class="subheading">Nice to have you back.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content-->
+        <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="my-5">
+
+ <ul class="list-group"></ul>
+  <% if(worngUsername.length > 0){ %>
+        <li class="list-group-item list-group-item-danger"><%= worngUsername %></li>
+    <% } %>
+  <% if(wrongPassword.length > 0){ %>
+        <li class="list-group-item list-group-item-danger"><%= wrongPassword %></li>
+    <% } %>
+    </ul>
+                            <!-- * * * * * * * * * * * * * * *-->
+                            <form action="/users/login" method="POST" id="contactForm" enctype="multipart/form-data">
+                                <div class="form-floating">
+                                    <input class="form-control" value="<%= Username %>"  type="text" placeholder="User Name" id="username" name="username"/>
+                                    <label for="username">User Name</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input class="form-control" value="<%= Password %>" type="text" placeholder="password" id="password" name="password"/>
+                                    <label for="username">Password</label>
+                                </div>
+                              
+<!--                               <div class="form-floating control-group">
+                                 <div class="form-group floating-label-form-group controls">
+                                    <label>Image</label>
+                                    <input type="file" class="form-control" id="image" name="image" >
+                                </div>
+                             </div> -->
+                            
+                                <br />
+                                <!-- Submit Button-->
+                                <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Login</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <%- include('layouts/footer'); -%>
