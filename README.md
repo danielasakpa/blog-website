@@ -8,7 +8,6 @@
 * [Technologies Used](#technologies-used)
 * [Features](#features)
 * [Screenshots](#screenshots)
-* [Setup](#setup)
 * [Usage](#usage)
 * [Project Status](#project-status)
 * [Acknowledgements](#acknowledgements)
@@ -42,12 +41,6 @@ List the ready features here:
 <!-- If you have screenshots you'd like to share, include them here. -->
 
 
-## Setup
-What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
-
-Proceed to describe how to install / setup one's local environment / get started with the project.
-
-
 ## Usage
 
 ```
@@ -58,7 +51,7 @@ $ npm start
 
 
 ## Project Status
-Project is:  _complete_.
+Project is:  _inprogress_.
 
 
 
@@ -68,7 +61,6 @@ To do:
 
 
 ## Acknowledgements
-Give credit here.
 - This project was inspired by...
 - Beginning Node.js, Express & MongoDB Development[Get the book](https://www.amazon.com/Beginning-Node-js-Express-MongoDB-Development/dp/1078379556).
 
