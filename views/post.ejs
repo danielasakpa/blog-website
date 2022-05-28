@@ -8,10 +8,9 @@
       <div class="col-md-10 col-lg-8 col-xl-7">
         <div class="post-heading">
           <h1><%= blogposts.title %></h1>
-          <h2 class="subheading"><%= blogposts.body.substring(0, 36) %></h2>
           <span class="meta">
             Posted by
-            <a href="#!"><%= blogpost.userid.username %></a>
+            <a href="#!"><%= blogposts.userid.username %></a>
             on <%= blogposts.datePosted.toDateString() %>
           </span>
         </div>
@@ -24,7 +23,7 @@
   <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
-        <%= blogposts.body %>
+        <%- blogposts.body %>
       </div>
     </div>
   </div>

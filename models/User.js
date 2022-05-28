@@ -1,28 +1,24 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-var uniqueValidator = require('mongoose-unique-validator');
+var uniqueValidator = require("mongoose-unique-validator");
 
-const bcrypt = require('bcrypt')
+const bcrypt = require("bcrypt");
 
 const Schema = mongoose.Schema;
 
-
-
 const UserSchema = new Schema({
-  
-username: {
-  type: String,
-  required: [true,'Please provide username'],
-  unique: true
- },
-password: {
- type: String,
- required: [true,'Please provide password']
-}
+  username: {
+    type: String,
+    required: [true, "Please provide username"],
+    unique: true
+  },
+  password: {
+    type: String,
+    required: [true, "Please provide password"]
+  }
 });
 
 UserSchema.plugin(uniqueValidator);
-
 
 UserSchema.pre("save", function (next) {
   const user = this;
@@ -32,8 +28,7 @@ UserSchema.pre("save", function (next) {
   });
 });
 
-
 // export model
-const User = mongoose.model('User',UserSchema);
+const User = mongoose.model("User", UserSchema);
 
-module.exports = User
+module.exports = User;

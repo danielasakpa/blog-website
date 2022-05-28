@@ -23,16 +23,16 @@
     </form>
 
     <div class="col-md-10 col-lg-8 col-xl-7">
-    <div id="searched">
-      
-    </div>
+      <div id="searched">
+
+      </div>
       <!-- Post preview-->
-    <div  id="main-post"">
+      <div id="main-post"">
    <% for (var i = blogposts.length - 1; i >= 0; i-- ) { %>
-      <div class="post-preview">
+      <div class=" post-preview">
         <a href="/post/<%= blogposts[i]._id %>">
           <h2 class="post-title"><%= blogposts[i].title %></h2>
-          <h3 class="post-subtitle"><%= blogposts[i].body.substring(0, 200) + "..."%></h3>
+          <h3 class="post-subtitle"><%- blogposts[i].body.substring(0, 250) + "..."%></h3>
         </a>
         <p class="post-meta">
           Posted by
@@ -41,42 +41,48 @@
         </p>
       </div>
       <hr class="my-4" />
-      <% } %> 
-      </div>
-      <!-- Pager-->
-      <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+      <% } %>
     </div>
+    <!-- Pager-->
+    <% if (blogposts.length > 0) { %>
+    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+    <% } else { %>
+    <p class="mx-auto" style="text-align: center;">Sorry, No Post To Show</p>
+    <% } %>
   </div>
 </div>
+</div>
 
-  <script>
-    const sendData = (e) => {
-      const searched = document.getElementById("searched")
-      let match = e.value.match(/^[a-zA-Z ]*/);
-      let match2 = e.value.match(/\s*/);
-      
+<script>
+  const sendData = (e) => {
+    const searched = document.getElementById("searched")
+    let match = e.value.match(/^[a-zA-Z ]*/);
+    let match2 = e.value.match(/\s*/);
     if (match2[0] === e.value) {
       searched.innerHTML = ""
       return
-     }
-
-   if (match[0] === e.value) {
-       fetch("post/search", {
-          method: 'POST',
-          headers: {"content-type": "application/json", 'Accept': 'application/json'},
-          body: JSON.stringify({payload: e.value})
-       }).then(res => res.json()).then(data => {
+    }
+    if (match[0] === e.value) {
+      fetch("post/search", {
+        method: 'POST',
+        headers: {
+          "content-type": "application/json",
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          payload: e.value
+        })
+      }).then(res => res.json()).then(data => {
         let payload = data.payload
-         console.log(payload)
-
-     if (payload.length < 1) {
-       searched.innerHTML = `<p>Sorry,Nothing Found<p>`
-       return;
-     }
-         
-     if(e.value.length > 0) {
-        payload.forEach( post => {
-        searched.innerHTML += `<div class="post-preview">
+        console.log(payload)
+        if (payload.length < 1) {
+          searched.innerHTML = `<p class="mx-auto" style="text-align:
+center;">Sorry,Nothing Found<p>`
+          return;
+        }
+        if (e.value.length > 0) {
+          payload.forEach(post => {
+            searched.innerHTML += `<div class="post-preview">
         <a href="/post/${post._id}">
           <h2 class="post-title">${post.title}</h2>
           <h3 class="post-subtitle">${post.body.substring(0, 200) + "..."}</h3>
@@ -88,15 +94,15 @@
         </p>
       </div>
       <hr class="my-4" />`
-       })  
-       document.getElementById("main-post").style.display = 'none';
-      } else {
-      document.getElementById("main-post").style.display = 'block';
-      }
+          })
+          document.getElementById("main-post").style.display = 'none';
+        } else {
+          document.getElementById("main-post").style.display = 'block';
+        }
       })
     }
-     searched.innerHTML = ""
-   }
-  </script>
+    searched.innerHTML = ""
+  }
+</script>
 
 <%- include('layouts/footer'); -%>
