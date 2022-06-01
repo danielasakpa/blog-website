@@ -1,7 +1,7 @@
 # The Blog App
 > lets users write blog entries once they sign up with an account,After the user registers, he/she can go to the homepage and login with his/her credentials. The navigation
  bar will dynamically show different items depending on the user being logged in or out.
-> Live demo [cooming soon](https://vast-coast-06462.herokuapp.com/). <!-- If you have the project hosted somewhere, include the link here. -->
+> Live demo [The Blog App](https://vast-coast-06462.herokuapp.com/). <!-- If you have the project hosted somewhere, include the link here. -->
 
 ## Table of Contents
 * [General Info](#general-information)
